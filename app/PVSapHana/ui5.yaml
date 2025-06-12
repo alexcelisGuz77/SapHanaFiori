@@ -15,7 +15,18 @@ builder:
       - "test/e2e/**"
 server:
   customMiddleware:
-    - name: "@ui5/middleware-code-coverage"
+    - name: ui5-middleware-simpleproxy
       afterMiddleware: compression
+      configuration:
+        baseUri: "http://localhost:4004"
+        mountPath: "/odata/v4/product"
     - name: ui5-middleware-livereload
       afterMiddleware: compression
+    
+
+customConfiguration:
+  ui5:
+    dependencies:
+      - ui5-middleware-simpleproxy
+      - ui5-middleware-livereload
+
