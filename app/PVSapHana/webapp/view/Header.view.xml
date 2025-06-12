@@ -1,0 +1,34 @@
+<mvc:View
+controllerName="PVSapHana.controller.Header"
+  xmlns:mvc="sap.ui.core.mvc"
+  xmlns="sap.m"
+  xmlns:tnt="sap.tnt"
+  displayBlock="true">
+
+  <tnt:ToolPage id="toolPage1">
+    
+
+    <!-- HEADER -->
+    <tnt:header>
+      <tnt:ToolHeader>
+        <Button icon="sap-icon://menu" press=".onToggleSideNav" />
+        <Title text="Mi Aplicación Fiori - Puntos de Venta" />
+        <ToolbarSpacer />
+        <Button icon="sap-icon://log" text="Salir" press=".onLogout" />
+      </tnt:ToolHeader>
+    </tnt:header>
+
+    <!-- MENU LATERAL -->
+    <tnt:sideContent>
+      <tnt:SideNavigation id="sideNavigation1" expanded="true" itemSelect=".onMenuItemSelect">
+        <tnt:NavigationList>
+          <tnt:NavigationListItem text="Inicio" icon="sap-icon://home" key="inicio" />
+          <tnt:NavigationListItem text="Ventas" icon="sap-icon://sales-order" key="ventas" />
+          <tnt:NavigationListItem text="Clientes" icon="sap-icon://customer" key="clientes" />
+          <tnt:NavigationListItem text="Configuración" icon="sap-icon://action-settings" key="configuracion" />
+        </tnt:NavigationList>
+      </tnt:SideNavigation>
+    </tnt:sideContent>
+
+  </tnt:ToolPage>
+</mvc:View>

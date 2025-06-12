@@ -1,0 +1,34 @@
+<mvc:View
+  xmlns:mvc="sap.ui.core.mvc"
+  xmlns="sap.m">
+  <Page title="Productos">
+    <content>
+      <Text text="Bienvenido a la página Productos" />
+
+            <Table
+        id="productsTable"
+        items="{
+          path: '/Products'
+        }">
+        <columns>
+          <Column><Text text="ID" /></Column>
+          <Column><Text text="Nombre" /></Column>
+          <Column><Text text="Categoría" /></Column>
+          <Column><Text text="Precio" /></Column>
+          <Column><Text text="Stock" /></Column>
+        </columns>
+        <items>
+          <ColumnListItem>
+            <cells>
+              <Text text="{ID}" />
+              <Text text="{name}" />
+              <Text text="{category}" />
+              <Text text="{price}" />
+              <Text text="{stock}" />
+            </cells>
+          </ColumnListItem>
+        </items>
+      </Table>
+    </content>
+  </Page>
+</mvc:View>

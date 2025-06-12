@@ -1,0 +1,9 @@
+<mvc:View
+  xmlns:mvc="sap.ui.core.mvc"
+  xmlns="sap.m">
+  <Page title="Inicio">
+    <content>
+      <Text text="Bienvenido a la página Inicio" />
+    </content>
+  </Page>
+</mvc:View>

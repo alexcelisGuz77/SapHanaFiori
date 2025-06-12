@@ -15,13 +15,13 @@
 		},
 		"dataSources": {
 			"mainService": {
-			  "uri": "/odata/v4/product/", 
-			  "type": "OData",
-			  "settings": {
-				"odataVersion": "4.0"
-			  }
+				"uri": "/odata/v4/product/",
+				"type": "OData",
+				"settings": {
+					"odataVersion": "4.0"
+				}
 			}
-		  }
+		}
 	},
 	"sap.ui": {
 		"technology": "UI5",
@@ -76,7 +76,6 @@
 				}
 			}
 		},
-		
 		"routing": {
 			"config": {
 				"routerClass": "sap.m.routing.Router",
@@ -90,12 +89,57 @@
 					"pattern": "",
 					"name": "main",
 					"target": "main"
+				},
+				{
+					"pattern": "",
+					"name": "inicio",
+					"target": "inicio"
+				},
+				{
+					"pattern": "ventas",
+					"name": "ventas",
+					"target": "ventas"
+				},
+				{
+					"pattern": "negocios",
+					"name": "negocios",
+					"target": "negocios"
+				},
+				{
+					"pattern": "productos",
+					"name": "productos",
+					"target": "productos"
+				},
+				{
+					"pattern": "configuracion",
+					"name": "configuracion",
+					"target": "configuracion"
 				}
 			],
 			"targets": {
 				"main": {
 					"viewId": "main",
 					"viewName": "Main"
+				},
+				"ventas": {
+					"viewName": "Ventas",
+					"viewId": "ventas",
+					"viewLevel": 2
+				},
+				"negocios": {
+					"viewName": "Negocios",
+					"viewId": "negocios",
+					"viewLevel": 2
+				},
+				"productos": {
+					"viewName": "Productos",
+					"viewId": "productos",
+					"viewLevel": 2
+				},
+				"configuracion": {
+					"viewName": "Configuracion",
+					"viewId": "configuracion",
+					"viewLevel": 3
 				}
 			}
 		}

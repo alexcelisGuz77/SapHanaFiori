@@ -16,6 +16,12 @@ sap.ui.define(["sap/ui/core/UIComponent", "sap/ui/Device", "./model/models"], fu
 			// create the views based on the url/hash
 			this.getRouter().initialize();
 		},
+
+		init: function () {
+			UIComponent.prototype.init.apply(this, arguments);
+			this.getRouter().initialize();
+		  },
+		
 		/**
 		 * This method can be called to determine whether the sapUiSizeCompact or sapUiSizeCozy
 		 * design mode class should be set, which influences the size appearance of some controls.

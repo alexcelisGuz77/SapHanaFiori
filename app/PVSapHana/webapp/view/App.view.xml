@@ -1,9 +1,68 @@
 <mvc:View
-	controllerName="PVSapHana.controller.App"
-	displayBlock="true"
-	xmlns="sap.m"
-	xmlns:mvc="sap.ui.core.mvc">
+    controllerName="PVSapHana.controller.App"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:tnt="sap.tnt"
+    displayBlock="true"
+>
+    <tnt:ToolPage id="toolPage">
+        <!-- HEADER -->
+        <tnt:header>
+            <tnt:ToolHeader>
+                <Button
+                    icon="sap-icon://menu"
+                    press=".onToggleSideNav"
+                />
+                <Title text="Mi Aplicación Fiori - Puntos de Venta" />
+                <ToolbarSpacer />
+                <Button
+                    icon="sap-icon://log"
+                    text="Salir"
+                    press=".onLogout"
+                />
+            </tnt:ToolHeader>
+        </tnt:header>
 
-	<App id="app" />
+        <!-- MENÚ LATERAL -->
+        <tnt:sideContent>
+            <tnt:SideNavigation
+                id="sideNavigation"
+                expanded="true"
+                itemSelect=".onMenuItemSelect"
+            >
+                <tnt:NavigationList>
+                    <tnt:NavigationListItem
+                        text="Inicio"
+                        icon="sap-icon://home"
+                        key="inicio"
+                    />
+                    <tnt:NavigationListItem
+                        text="Ventas"
+                        icon="sap-icon://sales-order"
+                        key="ventas"
+                    />
+                    <tnt:NavigationListItem
+                        text="Negocios"
+                        icon="sap-icon://factory"
+                        key="negocios"
+                    />
+                    <tnt:NavigationListItem
+                        text="Productos"
+                        icon="sap-icon://tag"
+                        key="productos"
+                    />
+                    <tnt:NavigationListItem
+                        text="Configuración"
+                        icon="sap-icon://action-settings"
+                        key="configuracion"
+                    />
+                </tnt:NavigationList>
+            </tnt:SideNavigation>
+        </tnt:sideContent>
 
+        <!-- CONTENIDO PRINCIPAL -->
+        <tnt:mainContents>
+            <App id="app" />
+        </tnt:mainContents>
+    </tnt:ToolPage>
 </mvc:View>
