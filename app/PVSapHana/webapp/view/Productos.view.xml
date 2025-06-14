@@ -1,34 +1,110 @@
 <mvc:View
-  xmlns:mvc="sap.ui.core.mvc"
-  xmlns="sap.m">
-  <Page title="Productos">
-    <content>
-      <Text text="Bienvenido a la página Productos" />
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:form="sap.ui.layout.form"
+    controllerName="PVSapHana.controller.Productos"
+>
+    <Page title="Gestión de Productos">
+        <content>
+            <VBox class="sapUiResponsiveMargin">
+                <Text
+                    text="Bienvenido a la página de Productos"
+                    class="sapUiSmallMarginBottom"
+                />
 
-            <Table
-        id="productsTable"
-        items="{
-          path: '/Products'
-        }">
-        <columns>
-          <Column><Text text="ID" /></Column>
-          <Column><Text text="Nombre" /></Column>
-          <Column><Text text="Categoría" /></Column>
-          <Column><Text text="Precio" /></Column>
-          <Column><Text text="Stock" /></Column>
-        </columns>
-        <items>
-          <ColumnListItem>
-            <cells>
-              <Text text="{ID}" />
-              <Text text="{name}" />
-              <Text text="{category}" />
-              <Text text="{price}" />
-              <Text text="{stock}" />
-            </cells>
-          </ColumnListItem>
-        </items>
-      </Table>
-    </content>
-  </Page>
+                <Panel
+                    headerText="Registrar nuevo producto"
+                    expandable="true"
+                    expanded="true"
+                    class="sapUiResponsiveMargin"
+                >
+                    <form:SimpleForm
+                        editable="true"
+                        layout="ResponsiveGridLayout"
+                        labelSpanL="3"
+                        labelSpanM="3"
+                        emptySpanL="1"
+                        emptySpanM="1"
+                        columnsL="2"
+                        columnsM="2"
+                        title="Nuevo producto"
+                    >
+                        <Label text="Nombre" />
+                        <Input value="{formModel>/newProduct/name}" />
+
+                        <Label text="Categoría" />
+                        <Input value="{formModel>/newProduct/category}" />
+
+                        <Label text="Precio" />
+                        <Input
+                            value="{formModel>/newProduct/price}"
+                            type="Number"
+                        />
+
+                        <Label text="Stock" />
+                        <Input
+                            value="{formModel>/newProduct/stock}"
+                            type="Number"
+                        />
+
+                        <Label text="" />
+                        <Button
+                            text="Guardar"
+                            press=".onSaveProduct"
+                            type="Emphasized"
+                        />
+                    </form:SimpleForm>
+                </Panel>
+
+                <Table
+                    id="productsTable"
+                    items="{ path: '/Products' }"
+                    growing="true"
+                    growingScrollToLoad="true"
+                    class="sapUiResponsiveMargin"
+                >
+                    <columns>
+                        <Column>
+                            <Text text="ID" />
+                        </Column>
+                        <Column>
+                            <Text text="Nombre" />
+                        </Column>
+                        <Column>
+                            <Text text="Categoría" />
+                        </Column>
+                        <Column>
+                            <Text text="Precio" />
+                        </Column>
+                        <Column>
+                            <Text text="Stock" />
+                        </Column>
+                        <Column
+                            width="3rem"
+                            hAlign="Center"
+                        >
+                            <Text text="" />
+                        </Column>
+                    </columns>
+                    <items>
+                        <ColumnListItem>
+                            <cells>
+                                <Text text="{ID}" />
+                                <Text text="{name}" />
+                                <Text text="{category}" />
+                                <Text text="{price}" />
+                                <Text text="{stock}" />
+                                <Button
+                                    icon="sap-icon://delete"
+                                    type="Transparent"
+                                    tooltip="Eliminar"
+                                    press=".onDeleteProduct"
+                                />
+                            </cells>
+                        </ColumnListItem>
+                    </items>
+                </Table>
+            </VBox>
+        </content>
+    </Page>
 </mvc:View>

@@ -1,6 +1,7 @@
 namespace my.products;
 
 entity Products {
+   @cds.autoIncrement
   key ID       : Integer;
       name     : String(100);
       category : String(50);
@@ -10,6 +11,7 @@ entity Products {
 
 
 entity Negocio {
+   @cds.autoIncrement
   key ID                 : Integer;                  // PN_ID
       nombre             : String(90);               // S_NOMBRE
       direccion          : String(150);              // S_DIRECCION
