@@ -52,6 +52,11 @@
                         key="productos"
                     />
                     <tnt:NavigationListItem
+                        text="Empleados"
+                        icon="sap-icon://employee-pane"
+                        key="empleados"
+                    />
+                    <tnt:NavigationListItem
                         text="Configuración"
                         icon="sap-icon://action-settings"
                         key="configuracion"

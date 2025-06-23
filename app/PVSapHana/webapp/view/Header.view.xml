@@ -24,6 +24,7 @@ controllerName="PVSapHana.controller.Header"
         <tnt:NavigationList>
           <tnt:NavigationListItem text="Inicio" icon="sap-icon://home" key="inicio" />
           <tnt:NavigationListItem text="Ventas" icon="sap-icon://sales-order" key="ventas" />
+          <tnt:NavigationListItem text="Ventas" icon="sap-icon://business" key="negocios" />
           <tnt:NavigationListItem text="Clientes" icon="sap-icon://customer" key="clientes" />
           <tnt:NavigationListItem text="Configuración" icon="sap-icon://action-settings" key="configuracion" />
         </tnt:NavigationList>

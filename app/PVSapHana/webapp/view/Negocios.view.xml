@@ -1,9 +1,169 @@
 <mvc:View
-  xmlns:mvc="sap.ui.core.mvc"
-  xmlns="sap.m">
-  <Page title="Negocios">
-    <content>
-      <Text text="Bienvenido a la página Negocio" />
-    </content>
-  </Page>
+    xmlns:form="sap.ui.layout.form"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    controllerName="PVSapHana.controller.Negocios"
+>
+    <Page title="Negocios">
+        <content>
+            <Text
+                text="Bienvenido a la pagina de Negocios"
+                class="sapUiSmallMarginBottom"
+            />
+
+            <Panel
+                headerText="Registrar nuevo Negocios"
+                expandable="true"
+                expand="true"
+                class="sapUiResponsiveMargin"
+            >
+                <form:SimpleForm
+                    editable="true"
+                    layout="ResponsiveGridLayout"
+                    labelSpanL="3"
+                    labelSpanM="3"
+                    emptySpanL="1"
+                    emptySpanM="1"
+                    columnsL="2"
+                    columnsM="1"
+                    title="Nuevo Negocio"
+                >
+                    <Label text="Nombre" />
+                    <Input value="{formModel>/newNegocio/nombre}" />
+
+                    <Label text="Direccion" />
+                    <Input value="{formModel>/newNegocio/direccion}" />
+
+                    <Label text="Celular" />
+                    <Input value="{formModel>/newNegocio/celular}" />
+
+                    <Label text="TipoNegocio" />
+                    <Input value="{formModel>/newNegocio/tipoNegocio}" />
+
+                    <Label text="Estado" />
+                    <Input value="{formModel>/newNegocio/estado}" />
+
+                    <Label text="Fecha de Alta" />
+                    <Input value="{formModel>/newNegocio/fechaAlta}" />
+
+                    <Label text="Fecha de Edicion" />
+                    <Input value="{formModel>/newNegocio/fechaEdita}" />
+
+                    <Label text="Usuario Alta" />
+                    <Input value="{formModel>/newNegocio/usuarioAlta}" />
+
+                    <Label text="Usuario Edita" />
+                    <Input value="{formModel>/newNegocio/usuarioEdita}" />
+
+                    <Label text="Razon Social" />
+                    <Input value="{formModel>/newNegocio/razonSocial}" />
+
+                    <Label text="RFC" />
+                    <Input value="{formModel>/newNegocio/rfc}" />
+
+                    <Label text="Correo" />
+                    <Input value="{formModel>/newNegocio/correo}" />
+
+                    <Label text="Ciudad" />
+                    <Input value="{formModel>/newNegocio/ciudad}" />
+
+                    <Label text="Estado" />
+                    <Input value="{formModel>/newNegocio/estadoMX}" />
+
+                    <Label text="Codigo Postal" />
+                    <Input value="{formModel>/newNegocio/codigoPostal}" />
+
+                    <Label text="Pagina Web" />
+                    <Input value="{formModel>/newNegocio/paginaWeb}" />
+
+                    <Label text="Facebook" />
+                    <Input value="{formModel>/newNegocio/facebook}" />
+
+                    <Label text="Instagram" />
+                    <Input value="{formModel>/newNegocio/instagram}" />
+
+                    <Label text="Regimen Fiscal" />
+                    <Input value="{formModel>/newNegocio/regimenFiscal}" />
+
+                    <Label text="CFDI" />
+                    <Input value="{formModel>/newNegocio/usoCFDI}" />
+
+                    <Label text="Serie Factura" />
+                    <Input value="{formModel>/newNegocio/serieFactura}" />
+
+                    <Label text="Folio Actual" />
+                    <Input value="{formModel>/newNegocio/folioActual}" />
+
+                    <Label text="Factura Electronica" />
+                    <Input value="{formModel>/newNegocio/facturaElectronica}" />
+
+                    <Label text="Moneda" />
+                    <Input value="{formModel>/newNegocio/moneda}" />
+
+                    <Label text="Zona Horaria" />
+                    <Input value="{formModel>/newNegocio/zonaHoraria}" />
+                    <Label text="" />
+                    <Button
+                        text="Guardar"
+                        press=".onSaveNegocio"
+                        type="Emphasized"
+                    />
+                </form:SimpleForm>
+            </Panel>
+
+            <Table
+                id="negociosTable"
+                items="{ path: '/Negocio' }"
+                growing="true"
+                growingScrollToLoad="true"
+                class="sapUiResponsiveMargin"
+            >
+                <columns>
+                    <Column>
+                        <Text text="ID" />
+                    </Column>
+                    <Column>
+                        <Text text="Negocio" />
+                    </Column>
+                    <Column>
+                        <Text text="Tipo Negocio" />
+                    </Column>
+                    <Column>
+                        <Text text="Correo Electronico" />
+                    </Column>
+                    <Column>
+                        <Text text="Ciudad" />
+                    </Column>
+                    <Column>
+                        <Text text="Estado" />
+                    </Column>
+
+                    <Column
+                        width="3rem"
+                        hAlign="Center"
+                    >
+                        <Text text="" />
+                    </Column>
+                </columns>
+                <items>
+                    <ColumnListItem>
+                        <cells>
+                            <Text text="{ID}" />
+                            <Text text="{nombre}" />
+                            <Text text="{tipoNegocio}" />
+                            <Text text="{correo}" />
+                            <Text text="{ciudad}" />
+                            <Text text="{estado}" />
+                            <Button
+                                icon="sap-icon://delete"
+                                type="Transparent"
+                                tooltip="Eliminar"
+                                press=".onDeleteNegocio"
+                            />
+                        </cells>
+                    </ColumnListItem>
+                </items>
+            </Table>
+        </content>
+    </Page>
 </mvc:View>

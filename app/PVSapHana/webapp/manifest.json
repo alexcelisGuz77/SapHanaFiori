@@ -111,6 +111,11 @@
 					"target": "productos"
 				},
 				{
+					"pattern": "empleados",
+					"name": "empleados",
+					"target": "empleados"
+				},
+				{
 					"pattern": "configuracion",
 					"name": "configuracion",
 					"target": "configuracion"
@@ -134,6 +139,11 @@
 				"productos": {
 					"viewName": "Productos",
 					"viewId": "productos",
+					"viewLevel": 2
+				},
+				"empleados": {
+					"viewName": "Empleados",
+					"viewId": "empleados",
 					"viewLevel": 2
 				},
 				"configuracion": {
