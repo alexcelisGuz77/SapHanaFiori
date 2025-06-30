@@ -8,7 +8,7 @@ sap.ui.define([
     return BaseController.extend("PVSapHana.controller.Empleados",{
         onInit: function (){
             var oFormModel = new sap.ui.model.json.JSONModel({
-                newEmpledos:{
+                newEmpleados:{
                     nombre: "",
                     apellidoPaterno: "",
                     apellidoMaterno: "",
@@ -20,7 +20,7 @@ sap.ui.define([
                     usuario: "",
                     puesto: 0,
                     celular: "",
-                    negocio: null,
+                    negocio_ID: null,
                     estado: 1,
                     fechaAlta: new Date(),
                     fechaEdita: new Date(),
@@ -31,19 +31,23 @@ sap.ui.define([
         
         },
 
-        onSaveEmpledo: function(){
+        onSaveEmpleado: function(){
             const oView = this.getView();
             const oFormModel = oView.getModel("formModel");
-            const oNewEmpledos = oFormModel.getProperty("/newEmpledos");
+            const oNewEmpleados = oFormModel.getProperty("/newEmpleados");
 
+            oNewEmpleados.negocio_ID = parseInt(oNewEmpleados.negocio_ID);
+            console.log(oNewEmpleados.negocio_ID);
+
+            
             const oTable = oView.byId("empleadosTable");
             const oBinding = oTable.getBinding("items");
 
-            oBinding.create(oNewEmpledos);
+            oBinding.create(oNewEmpleados);
 
             sap.m.MessageToast.show("Empledos en proseso de alta... ");
 
-            oFormModel.setProperty("/newEmpledos",{
+            oFormModel.setProperty("/newEmpleados",{
                 nombre: "",
                 apellidoPaterno: "",
                 apellidoMaterno: "",
@@ -55,7 +59,7 @@ sap.ui.define([
                 usuario: "",
                 puesto: 0,
                 celular: "",
-                negocio: null,
+                negocio_ID: null,
                 estado: 1,
                 fechaAlta: new Date(),
                 fechaEdita: new Date(),
@@ -64,7 +68,7 @@ sap.ui.define([
             })
         },
 
-        oDeleteProduct: function (oEvent){
+        oDeleteEmpleado: function (oEvent){
             const oButton = oEvent.getSource();
             const oContext = oButton.getBindingContext();
 
