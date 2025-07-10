@@ -57,6 +57,21 @@
                         key="empleados"
                     />
                     <tnt:NavigationListItem
+                        text="Inventario"
+                        icon="sap-icon://inventory"
+                        key="inventario"
+                    />
+                    <tnt:NavigationListItem
+                        text="InventarioProducto"
+                        icon="sap-icon://sap-box"
+                        key="inventarioProducto"
+                    />
+                    <tnt:NavigationListItem
+                        text="Clientes"
+                        icon="sap-icon://customer-view"
+                        key="clientes"
+                    />
+                    <tnt:NavigationListItem
                         text="Configuración"
                         icon="sap-icon://action-settings"
                         key="configuracion"

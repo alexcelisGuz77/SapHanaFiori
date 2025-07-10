@@ -119,10 +119,7 @@
                         <Column>
                             <Text text="RFC" />
                         </Column>
-                        <Column
-                            width="3rem"
-                            hAlign="Center"
-                        >
+                        <Column>
                             <Text text="" />
                         </Column>
                     </columns>

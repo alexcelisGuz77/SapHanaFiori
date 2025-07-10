@@ -1,8 +1,7 @@
 namespace my.products;
 
 entity Products {
-   @cds.autoIncrement
-  key ID       : Integer;
+  key ID       : UUID;
       name     : String(100);
       category : String(50);
       price    : Decimal(10,2);
@@ -11,8 +10,7 @@ entity Products {
 
 
 entity Negocio {
-   @cds.autoIncrement
-  key ID                 : Integer;    
+  key ID                 : UUID;    
       nombre             : String(90); 
       direccion          : String(150);
       celular            : String(10); 
@@ -42,8 +40,7 @@ entity Negocio {
 }
 
 entity Empleado{
-  @cds.autoIncrement
-  key ID                 : Integer;   
+  key ID                 : UUID;   
       nombre             : String(90);
       apellidoPaterno    : String(90);
       apellidoMaterno    : String(90);
@@ -65,3 +62,33 @@ entity Empleado{
       usuarioEdita       : String(50);
 
 }
+
+entity Inventario{
+  key ID           :UUID;
+      negocio      :Association to Negocio;
+      nombre       :String(90);
+      nota         :String(190);
+      direccion    :String(190);
+      estado       :Integer; 
+      fechaAlta    : Timestamp;
+      fechaEdita   : Timestamp; 
+      usuarioAlta  : String(50);
+      usuarioEdita : String(50);
+}
+
+
+entity InventarioProducto {
+  Key ID :UUID;
+      producto     : Association to Products;
+      inventario   : Association to Inventario;
+      cantidad     : Integer;
+      cantidadMin  : Integer;
+      cantidadMax  : Integer;
+      ubicacion    : String(120);
+      precioVenta  : Decimal(10,2);
+      fechaAlta    : Timestamp; 
+      fechaEdita   : Timestamp; 
+      usuarioAlta  : String(50);
+      usuarioEdita : String(50);
+}
+

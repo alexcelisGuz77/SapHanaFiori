@@ -4,7 +4,7 @@
     xmlns="sap.m"
     controllerName="PVSapHana.controller.Negocios"
 >
-    <Page title="Negocios">
+    <Page title="Gestion de Negocios">
         <content>
             <Text
                 text="Bienvenido a la pagina de Negocios"
@@ -126,6 +126,9 @@
                         <Text text="Negocio" />
                     </Column>
                     <Column>
+                        <Text text="Negocio" />
+                    </Column>
+                    <Column>
                         <Text text="Tipo Negocio" />
                     </Column>
                     <Column>
@@ -138,10 +141,7 @@
                         <Text text="Estado" />
                     </Column>
 
-                    <Column
-                        width="3rem"
-                        hAlign="Center"
-                    >
+                    <Column>
                         <Text text="" />
                     </Column>
                 </columns>
@@ -150,16 +150,29 @@
                         <cells>
                             <Text text="{ID}" />
                             <Text text="{nombre}" />
+                            <Text text="{direccion}" />
                             <Text text="{tipoNegocio}" />
                             <Text text="{correo}" />
                             <Text text="{ciudad}" />
                             <Text text="{estado}" />
-                            <Button
-                                icon="sap-icon://delete"
-                                type="Transparent"
-                                tooltip="Eliminar"
-                                press=".onDeleteNegocio"
-                            />
+                            <HBox
+                                justifyContent="Center"
+                                alignItems="Center"
+                            >
+                                <Button
+                                    icon="sap-icon://edit"
+                                    type="Transparent"
+                                    tooltip="Editar"
+                                    press=".onBuscarNegocioPorID"
+                                />
+
+                                <Button
+                                    icon="sap-icon://delete"
+                                    type="Transparent"
+                                    tooltip="Eliminar"
+                                    press=".onDeleteNegocio"
+                                />
+                            </HBox>
                         </cells>
                     </ColumnListItem>
                 </items>

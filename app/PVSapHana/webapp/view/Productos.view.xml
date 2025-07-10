@@ -53,6 +53,7 @@
                             press=".onSaveProduct"
                             type="Emphasized"
                         />
+             
                     </form:SimpleForm>
                 </Panel>
 
@@ -79,11 +80,8 @@
                         <Column>
                             <Text text="Stock" />
                         </Column>
-                        <Column
-                            width="3rem"
-                            hAlign="Center"
-                        >
-                            <Text text="" />
+                        <Column>
+                            <Text text="Acciones" />
                         </Column>
                     </columns>
                     <items>
@@ -94,12 +92,23 @@
                                 <Text text="{category}" />
                                 <Text text="{price}" />
                                 <Text text="{stock}" />
-                                <Button
-                                    icon="sap-icon://delete"
-                                    type="Transparent"
-                                    tooltip="Eliminar"
-                                    press=".onDeleteProduct"
-                                />
+                                <HBox
+                                    justifyContent="Center"
+                                    alignItems="Center"
+                                >
+                                    <Button
+                                        icon="sap-icon://edit"
+                                        type="Transparent"
+                                        tooltip="Editar"
+                                        press=".onEditProduct"
+                                    />
+                                    <Button
+                                        icon="sap-icon://delete"
+                                        type="Transparent"
+                                        tooltip="Eliminar"
+                                        press=".onDeleteProduct"
+                                    />
+                                </HBox>
                             </cells>
                         </ColumnListItem>
                     </items>

@@ -35,11 +35,7 @@ sap.ui.define([
             const oView = this.getView();
             const oFormModel = oView.getModel("formModel");
             const oNewEmpleados = oFormModel.getProperty("/newEmpleados");
-
-            oNewEmpleados.negocio_ID = parseInt(oNewEmpleados.negocio_ID);
-            console.log(oNewEmpleados.negocio_ID);
-
-            
+                        
             const oTable = oView.byId("empleadosTable");
             const oBinding = oTable.getBinding("items");
 
@@ -68,7 +64,7 @@ sap.ui.define([
             })
         },
 
-        oDeleteEmpleado: function (oEvent){
+        onDeleteEmpleado: function (oEvent){
             const oButton = oEvent.getSource();
             const oContext = oButton.getBindingContext();
 

@@ -119,6 +119,21 @@
 					"pattern": "configuracion",
 					"name": "configuracion",
 					"target": "configuracion"
+				},
+				{
+					"pattern": "inventario",
+					"name": "inventario",
+					"target": "inventario"
+				},
+				{
+					"pattern": "inventarioProducto",
+					"name": "inventarioProducto",
+					"target": "inventarioProducto"
+				},
+				{
+					"pattern": "clientes",
+					"name": "clientes",
+					"target": "clientes"
 				}
 			],
 			"targets": {
@@ -150,6 +165,21 @@
 					"viewName": "Configuracion",
 					"viewId": "configuracion",
 					"viewLevel": 3
+				},
+				"inventario": {
+					"viewName": "Inventario",
+					"viewId": "inventario",
+					"viewLevel": 4
+				},
+				"inventarioProducto": {
+					"viewName": "InventarioProducto",
+					"viewId": "inventarioProducto",
+					"viewLevel": 5
+				},
+				"clientes": {
+					"viewName": "Clientes",
+					"viewId": "clientes",
+					"viewLevel": 6
 				}
 			}
 		}

@@ -10,6 +10,7 @@ sap.ui.define([
       // Crear un modelo JSON local y nombrado "formModel"
       var oFormModel = new sap.ui.model.json.JSONModel({
         newProduct: {
+          ID: null,
           name: "",
           category: "",
           price: 0,
@@ -22,19 +23,30 @@ sap.ui.define([
     onSaveProduct: function () {
       const oView = this.getView();
       const oFormModel = oView.getModel("formModel");
-      const oNewProduct = oFormModel.getProperty("/newProduct");
+      const oNewProserieFacturaduct = oFormModel.getProperty("/newProduct");
 
       // Acceder al binding de la tabla
       const oTable = oView.byId("productsTable");
       const oBinding = oTable.getBinding("items");
 
-      // Crear el nuevo producto desde el binding
-      oBinding.create(oNewProduct);
-
-      sap.m.MessageToast.show("Producto en proceso de creación...");
+      if (this._oEditingContext) {
+        // Estamos editando un producto existente
+        this._oEditingContext.setProperty("name", oNewProduct.name);
+        this._oEditingContext.setProperty("category", oNewProduct.category);
+        this._oEditingContext.setProperty("price", oNewProduct.price);
+        this._oEditingContext.setProperty("stock", oNewProduct.stock);
+    
+        sap.m.MessageToast.show("Producto actualizado correctamente");
+        this._oEditingContext = null; // Resetear el contexto de edición
+      } else {
+        // Crear uno nuevo
+        oBinding.create(oNewProduct);
+        sap.m.MessageToast.show("Producto en proceso de creación...");
+      }
 
       // Resetear el formulario
       oFormModel.setProperty("/newProduct", {
+        ID: null,
         name: "",
         category: "",
         price: 0,
@@ -61,7 +73,22 @@ sap.ui.define([
           }
         }
       });
+    },
+
+    onEditProduct: function (oEvent) {
+      const Path = oEvent.getSource().getParent().getParent();
+      const oContext = oItem.getBindingContext();
+      const oData = oContext.getObject();
+
+      MessageToast.show("Editar producto: " + oData.name);
+
+      // También guarda el contexto para posterior actualización
+      this._oEditingContext = oContext;
+
+      this.getView().getModel("formModel").setProperty("/newProduct", { ...oData });
     }
+
+
 
 
   });

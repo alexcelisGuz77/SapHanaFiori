@@ -37,13 +37,30 @@ sap.ui.define(["./BaseController", "sap/m/MessageToast"], function (BaseControll
 				case "clientes":
 					MessageToast.show("Navegando a Clientes");
 					break;
-				case "empledos":
-					MessageToast.show("Navegando a Empledos");
+				case "empleados":
+					MessageToast.show("Navegando a Empleados");
+					break;
+
+				case "productos":
+					MessageToast.show("Navegando a Productos");
+					break;
+
+				case "negocio":
+					MessageToast.show("Navegando a Negocio");
+					break;
+
+				case "inventario":
+					MessageToast.show("Navegando a Inventario");
+					break;
+
+				case "inventarioProducto":
+					MessageToast.show("Navegando a Inventario Producto");
 					break;
 
 				case "configuracion":
 					MessageToast.show("Navegando a Configuración");
 					break;
+
 				default:
 					MessageToast.show("Sección desconocida.");
 			}

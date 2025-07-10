@@ -1,7 +1,4 @@
 ID;name;category;price;stock
-1;Laptop;Electronics;999.99;20
-2;Smartphone;Electronics;599.99;30
-3;Desk Chair;Furniture;149.99;15
-4;Pen;Stationery;1.99;200
-5;Notebook;Stationery;3.99;150
-7;Book;Stationery;3.99;150
+8f3c85e0-9d99-4a3d-bf38-bb41e3b5a3e1;Laptop;Electronics;999.99;20
+14fd1e3c-fae3-4c94-b486-943e04b60c3a;Smartphone;Electronics;599.99;30
+57e19085-2c3a-4c27-9423-301c5aa9998e;Desk Chair;Furniture;149.99;15

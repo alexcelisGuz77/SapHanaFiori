@@ -1,0 +1,151 @@
+<mvc:View
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:form="sap.ui.layout.form"
+    xmlns:core="sap.ui.core"
+    xmlns="sap.m"
+    controllerName="PVSapHana.controller.InventarioProducto"
+>
+    <Page title="Anadir producto a Inventario">
+        <content>
+            <Text
+                text="Bienvenido a la página InventarioProducto"
+                class="sapUiSmallMarginBottom"
+            />
+
+            <Panel
+                headerText="Añade un producto a  Inventario"
+                expandable="true"
+                expand="true"
+                class="sapUiResponsiveMargin"
+            >
+                <form:SimpleForm
+                    editable="true"
+                    layout="ResponsiveGridLayout"
+                    labelSpanL="3"
+                    labelSpanM="3"
+                    emptySpanL="1"
+                    emptySpanM="1"
+                    columnsL="2"
+                    columnsM="2"
+                    title="Añade un producto"
+                >
+                    <Label text="Productos" />
+                    <ComboBox
+                        items="{/Products}"
+                        selectedKey="{formModel>/newInventarioProducto/products_id}"
+                    >
+                        <core:Item
+                            key="{ID}"
+                            text="{name}"
+                        />
+                    </ComboBox>
+                    <Label text="Inventario" />
+                    <ComboBox
+                        items="{/Inventario}"
+                        selectedKey="{formModel>/newInventarioProducto/inventario_id}"
+                    >
+                        <core:Item
+                            key="{ID}"
+                            text="{nombre}"
+                        />
+                    </ComboBox>
+
+                    <Label text="cantidad" />
+                    <Input
+                        value="{formModel>/newInventarioProducto/cantidad}"
+                    />
+                    <Label text="cantidadMin" />
+                    <Input
+                        value="{formModel>/newInventarioProducto/cantidadMin}"
+                    />
+                    <Label text="cantidadMax" />
+                    <Input
+                        value="{formModel>/newInventarioProducto/cantidadMax}"
+                    />
+                    <Label text="ubicacion" />
+                    <Input
+                        value="{formModel>/newInventarioProducto/ubicacion}"
+                    />
+                    <Label text="precioVenta" />
+                    <Input
+                        value="{formModel>/newInventarioProducto/precioVenta}"
+                    />
+                    <Label text="fechaAlta" />
+                    <DatePicker
+                        value="{formModel>/newInventarioProducto/fechaAlta}"
+                    displayFormat="yyyy-MM-dd"
+                    />
+                    <Label text="fechaEdita" />
+                    <DatePicker
+                        value="{formModel>/newInventarioProducto/fechaEdita}"
+                    displayFormat="yyyy-MM-dd"
+                    />
+                    <Label text="usuarioAlta" />
+                    <Input
+                        value="{formModel>/newInventarioProducto/usuarioAlta}"
+                    />
+                    <Label text="usuarioEdita" />
+                    <Input
+                        value="{formModel>/newInventarioProducto/usuarioEdita}"
+                    />
+
+                    <Label text="" />
+                    <Button
+                        text="Guardar"
+                        press=".onSaveInventarioProducto"
+                        type="Emphasized"
+                    />
+                </form:SimpleForm>
+            </Panel>
+
+            <Table
+                id="inventarioProductosTable"
+                items="{ path: '/InventarioProducto' }"
+                growing="true"
+                growingScrollToLoad="true"
+                class="sapUiResponsiveMargin"
+            >
+                <columns>
+                    <Column>
+                        <Text text="ID" />
+                    </Column>
+                    <Column>
+                        <Text text="producto" />
+                    </Column>
+                    <Column>
+                        <Text text="inventario" />
+                    </Column>
+                    <Column>
+                        <Text text="cantidad" />
+                    </Column>
+                    <Column>
+                        <Text text="cantidadMin" />
+                    </Column>
+                    <Column>
+                        <Text text="ubicacion" />
+                    </Column>
+                    <Column>
+                        <Text text="" />
+                    </Column>
+                </columns>
+                <items>
+                    <ColumnListItem>
+                        <cells>
+                            <Text text="{ID}" />
+                            <Text text="{producto.nombre}" />
+                            <Text text="{inventario.nombre}" />
+                            <Text text="{cantidad}" />
+                            <Text text="{cantidadMin}" />
+                            <Text text="{ubicacion}" />
+                            <Button
+                                icon="sap-icon://delete"
+                                type="Transparent"
+                                tooltip="Eliminar"
+                            />
+                        </cells>
+                    </ColumnListItem>
+                </items>
+            </Table>
+        </content>
+    </Page>
+</mvc:View>

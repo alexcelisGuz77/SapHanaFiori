@@ -1,0 +1,122 @@
+<mvc:View
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:form="sap.ui.layout.form"
+    xmlns:core="sap.ui.core"
+    controllerName="PVSapHana.controller.Inventario"
+>
+    <Page title="Gestion de Inventarios">
+        <content>
+            <Text
+                text="Bienvenido a la página Inventario"
+                class="sapUiSmallMarginBottom"
+            />
+
+            <Panel
+                headerText="Registar un nuevo Imventario"
+                expandable="true"
+                expanded="true"
+                class="sapUiResponsiveMargin"
+            >
+                <form:SimpleForm
+                    editable="true"
+                    layout="ResponsiveGridLayout"
+                    labelSpanL="3"
+                    labelSpanM="3"
+                    emptySpanL="1"
+                    emptySpanM="1"
+                    columnsL="2"
+                    columnsM="2"
+                    title="Alta de Inventario"
+                >
+                    <Label text="Nombre" />
+                    <Input value="{formModel>/newInventario/nombre}" />
+
+                    <Label text="Nota" />
+                    <Input value="{formModel>/newInventario/nota}" />
+
+                    <Label text="Direccion" />
+                    <Input value="{formModel>/newInventario/direccion}" />
+
+                    <Label text="Estado" />
+                    <Input value="{formModel>/newInventario/estado}" />
+
+                    <Label text="Negocio" />
+                    <ComboBox
+                        items="{/Negocio}"
+                        selectedKey="{formModel>/newInventario/negocio_ID}"
+                    >
+                        <core:Item
+                            key="{ID}"
+                            text="{nombre}"
+                        />
+                    </ComboBox>
+
+                    <Label text="Fecha de Alta" />
+                    <Input value="{formModel>/newInventario/fechaAlta}" />
+
+                    <Label text="Fecha de Edicion" />
+                    <Input value="{formModel>/newInventario/fechaEdita}" />
+
+                    <Label text="Usuario Alta" />
+                    <Input value="{formModel>/newInventario/usuarioAlta}" />
+
+                    <Label text="Usuario Edita" />
+                    <Input value="{formModel>/newInventario/usuarioEdita}" />
+                    <Label text="" />
+                    <Button
+                        text="Guardar"
+                        press=".onSaveInventario"
+                        type="Emphasized"
+                    />
+                </form:SimpleForm>
+            </Panel>
+
+            <Table
+                id="inventarioTable"
+                items="{ path: '/Inventario' }"
+                growing="true"
+                growingScrollToLoad="true"
+                class="sapUiResponsiveMargin"
+            >
+                <columns>
+                    <Column>
+                        <Text text="ID" />
+                    </Column>
+
+                    <Column>
+                        <Text text="Inventario" />
+                    </Column>
+                    <Column>
+                        <Text text="direccion" />
+                    </Column>
+                    <Column>
+                        <Text text="estado" />
+                    </Column>
+                    <Column>
+                        <Text text="Negocio" />
+                    </Column>
+                    <Column>
+                        <Text text="fechaAlta" />
+                    </Column>
+                    <Column>
+                        <Text text="usuarioAlta" />
+                    </Column>
+                </columns>
+                <items>
+                    <ColumnListItem>
+                        <cells>
+                            <Text text="{ID}" />
+                            <Text text="{nombre}" />
+                            <Text text="{direccion}" />
+                            <Text text="{estado}" />
+                            <Text text="{negocio}" />
+                            <Text text="{fechaAlta}" />
+                            <Text text="{usuarioAlta}" />
+                        </cells>
+                    </ColumnListItem>
+                </items>
+            </Table>
+        </content>
+    </Page>
+</mvc:View>
