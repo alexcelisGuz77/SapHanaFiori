@@ -32,7 +32,7 @@
                     <Label text="Productos" />
                     <ComboBox
                         items="{/Products}"
-                        selectedKey="{formModel>/newInventarioProducto/products_id}"
+                        selectedKey="{formModel>/newInventarioProducto/producto_ID}"
                     >
                         <core:Item
                             key="{ID}"
@@ -42,7 +42,7 @@
                     <Label text="Inventario" />
                     <ComboBox
                         items="{/Inventario}"
-                        selectedKey="{formModel>/newInventarioProducto/inventario_id}"
+                        selectedKey="{formModel>/newInventarioProducto/inventario_ID}"
                     >
                         <core:Item
                             key="{ID}"
@@ -73,12 +73,12 @@
                     <Label text="fechaAlta" />
                     <DatePicker
                         value="{formModel>/newInventarioProducto/fechaAlta}"
-                    displayFormat="yyyy-MM-dd"
+                        displayFormat="yyyy-MM-dd"
                     />
                     <Label text="fechaEdita" />
                     <DatePicker
                         value="{formModel>/newInventarioProducto/fechaEdita}"
-                    displayFormat="yyyy-MM-dd"
+                        displayFormat="yyyy-MM-dd"
                     />
                     <Label text="usuarioAlta" />
                     <Input
@@ -137,11 +137,22 @@
                             <Text text="{cantidad}" />
                             <Text text="{cantidadMin}" />
                             <Text text="{ubicacion}" />
-                            <Button
-                                icon="sap-icon://delete"
-                                type="Transparent"
-                                tooltip="Eliminar"
-                            />
+                            <HBox
+                                justifyContent="Center"
+                                alignItems="Center"
+                            >
+                                <Button
+                                    icon="sap-icon://delete"
+                                    type="Transparent"
+                                    tooltip="Eliminar"
+                                />
+                                <Button
+                                    icon="sap-icon://edit"
+                                    type="Transparent"
+                                    tooltip="Eliminar"
+                                    press=".onBuscarInventarioProductoPorId"
+                                />
+                            </HBox>
                         </cells>
                     </ColumnListItem>
                 </items>

@@ -6,5 +6,7 @@ service ProductService {
   entity Empleado as projection on products.Empleado;
   entity Inventario as projection on products.Inventario;
   entity InventarioProducto as projection on products.InventarioProducto;
+  entity Cliente as projection on products.Cliente;
+  
 }
 

@@ -84,7 +84,10 @@
                             items="{/Negocio}"
                             selectedKey="{formModel>/newEmpleados/negocio_ID}"
                         >
-    <core:Item key="{ID}" text="{nombre}" />
+                            <core:Item
+                                key="{ID}"
+                                text="{nombre}"
+                            />
                         </ComboBox>
 
                         <Label text="" />

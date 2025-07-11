@@ -1,9 +1,153 @@
 <mvc:View
-  xmlns:mvc="sap.ui.core.mvc"
-  xmlns="sap.m">
-  <Page title="Cliente">
-    <content>
-      <Text text="Bienvenido a la página cliente" />
-    </content>
-  </Page>
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:form="sap.ui.layout.form"
+    xmlns:core="sap.ui.core"
+    controllerName="PVSapHana.controller.Cliente"
+>
+    <Page title="Cliente">
+        <content>
+            <VBox class="sapUiResponsiveMargin">
+                <Text
+                    text="Bienvenido a ala pagina de clientes"
+                    class="sapUiSmallMarginBottom"
+                />
+                <Panel
+                    headerText="Registrar nuevo Cliente"
+                    expandable="true"
+                    expanded="true"
+                    class="sapUiResponsiveMargin"
+                >
+                    <form:SimpleForm
+                        editable="true"
+                        layout="ResponsiveGridLayout"
+                        labelSpanL="3"
+                        labelSpanM="3"
+                        emptySpanL="1"
+                        emptySpanM="1"
+                        columnsL="2"
+                        columnsM="2"
+                        title="Nuevo Cliente"
+                    >
+                        <Label text="Nombre" />
+                        <Input  required="true" value="{formModel>/newCliente/nombre}" />
+
+                        <Label text="Telefono" />
+                        <Input value="{formModel>/newCliente/telefono}" />
+
+                        <Label text="Celular" />
+                        <Input value="{formModel>/newCliente/celular}" />
+
+                        <Label text="Correo Electronico" />
+                        <Input
+                            value="{formModel>/newCliente/correoElectronico}"
+                        />
+                        <Label text="Negocio" />
+                        <ComboBox
+                            items="{/Negocio}"
+                            selectedKey="{formModel>/newEmpleados/negocio_ID}"
+                        >
+                            <core:Item
+                                key="{ID}"
+                                text="{nombre}"
+                            />
+                        </ComboBox>
+                        <Label text="Estado" />
+                        <Input value="{formModel>/newCliente/estado}" />
+
+                        <Label text="Fecha Alta" />
+                        <Input value="{formModel>/newCliente/fechaAlta}" />
+
+                        <Label text="Fecha Edita" />
+                        <Input value="{formModel>/newCliente/fechaEdita}" />
+
+                        <Label text="Usuario Alta" />
+                        <Input value="{formModel>/newCliente/usuarioAlta}" />
+
+                        <Label text="Usuario Edita" />
+                        <Input value="{formModel>/newCliente/usuarioEdita}" />
+
+                        <Label text="" />
+                        <Button
+                            text="Guardar"
+                            press=".onSaveCliente"
+                            type="Emphasized"
+                        />
+                    </form:SimpleForm>
+                </Panel>
+                <SearchField 
+               width="50%" 
+               search=".onFilterInvoices"/>
+               
+                <Table
+                    id="clienteTable"
+                    items="{ path: '/Cliente' }"
+                    growing="true"
+                    growingScrollToLoad="true"
+                    class="sapUiResponsiveMargin"
+                >
+
+
+                    <columns>
+                        <Column>
+                            <Text text="ID" />
+                        </Column>
+                        <Column>
+                            <Text text="nombre" />
+                        </Column>
+                        <Column>
+                            <Text text="telefono" />
+                        </Column>
+                        <Column>
+                            <Text text="correoElectronico" />
+                        </Column>
+                        <Column>
+                            <Text text="estado" />
+                        </Column>
+                        <Column>
+                            <Text text="fechaAlta" />
+                        </Column>
+                        <Column>
+                            <Text text="usuarioAlta" />
+                        </Column>
+                        <Column>
+                            <Text text="" />
+                        </Column>
+                    </columns>
+                    <items>
+                        <ColumnListItem>
+                            <cells>
+                                <Text text="{ID}" />
+                                <Text text="{nombre}" />
+                                <Text text="{telefono}" />
+                                <Text text="{correoElectronico}" />
+                                <Text text="{estado}" />
+                                <Text text="{fechaAlta}" />
+                                <Text text="{usuarioAlta}" />
+                                                        <HBox
+                                justifyContent="Center"
+                                alignItems="Center"
+                            >
+                                <Button
+                                    icon="sap-icon://edit"
+                                    type="Transparent"
+                                    tooltip="Editar"
+                                    press=".onBuscarClientePorID"
+                                />
+
+                                <Button
+                                    icon="sap-icon://delete"
+                                    type="Transparent"
+                                    tooltip="Eliminar"
+                                    press=".onDeleteCliente"
+                                />
+                            </HBox>
+                            </cells>
+
+                        </ColumnListItem>
+                    </items>
+                </Table>
+            </VBox>
+        </content>
+    </Page>
 </mvc:View>

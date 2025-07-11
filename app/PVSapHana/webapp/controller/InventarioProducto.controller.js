@@ -10,8 +10,8 @@ sap.ui.define([
             var oFormModel = new sap.ui.model.json.JSONModel({
                 newInventarioProducto: {
                     ID: null,
-                    products_id: null,
-                    inventario_id: null,
+                    producto_ID: null,
+                    inventario_ID: null,
                     cantidad: "",
                     cantidadMin: "",
                     cantidadMax: "",
@@ -31,33 +31,26 @@ sap.ui.define([
             const oFormModel = oView.getModel("formModel");
             const oRawData = oFormModel.getProperty("/newInventarioProducto");
 
-            console.log("--->" + oRawData.products_id +"   "+oFormModel  );
-        
-            // Aseguramos que solo se pase el UUID (string) en vez de un objeto
-            const oNewInventarioProducto = {
-                products: oRawData.products_id,  
-                inventario: oRawData.inventario_id,
-                cantidad: oRawData.cantidad,
-                cantidadMin: oRawData.cantidadMin,
-                cantidadMax: oRawData.cantidadMax,
-                ubicacion: oRawData.ubicacion,
-                precioVenta: oRawData.precioVenta,
-                fechaAlta: oRawData.fechaAlta,
-                fechaEdita: oRawData.fechaEdita,
-                usuarioAlta: oRawData.usuarioAlta,
-                usuarioEdita: oRawData.usuarioEdita
-            };
-        
             const oTable = oView.byId("inventarioProductosTable");
             const oBinding = oTable.getBinding("items");
-        
-            if (this._oEditingContext) {
-                // Aquí también puedes corregir si es necesario
-                Object.keys(oNewInventarioProducto).forEach(prop => {
-                    this._oEditingContext.setProperty(prop, oNewInventarioProducto[prop]);
-                });
-            } else {
-                oBinding.create(oNewInventarioProducto);
+            
+            if(this._oEditingContext){
+                this._oEditingContext.setProperty("producto_ID",oRawData.producto_ID );
+                this._oEditingContext.setProperty("inventario_ID",oRawData.inventario_ID );
+                this._oEditingContext.setProperty("cantidad",oRawData.cantidad );
+                this._oEditingContext.setProperty("cantidadMin",oRawData.cantidadMin );
+                this._oEditingContext.setProperty("cantidadMax",oRawData.cantidadMax );
+                this._oEditingContext.setProperty("ubicacion",oRawData.ubicacion );
+                this._oEditingContext.setProperty("precioVenta",oRawData.precioVenta );
+                this._oEditingContext.setProperty("fechaAlta",oRawData.fechaAlta );
+                this._oEditingContext.setProperty("fechaEdita",oRawData.fechaEdita );
+                this._oEditingContext.setProperty("usuarioAlta",oRawData.usuarioAlta );
+                this._oEditingContext.setProperty("usuarioEdita",oRawData.usuarioEdita );
+            
+                sap.m.MessageToast.show("Realacion Inventario Producto Actualizado correctamente");
+                this._oEditingContext = null;
+            }else{
+                oBinding.create(oRawData);
                 sap.m.MessageToast.show("Añadiendo Producto al inventario");
             }
         
@@ -94,12 +87,13 @@ sap.ui.define([
                 const oData = await oBoundContext.requestObject();
 
                 if(!oData){
+                    console.log("Que onda");
                     throw new Error("No se encontro la relacion Inventario Producto");
                 }
 
-                this.getView().getModel("formModel").setProperty("newInventarioProducto", oData);
+                this.getView().getModel("formModel").setProperty("/newInventarioProducto", oData);
                 sap.m.MessageToast.show("Iventario Producto cargado para edicion");
-                this._oEditingContext = context;
+                this._oEditingContext = oContext;
             }catch(err){
                 console.error("Error al optener la relacion de inventario Porducto", err);
                 sap.m.MessageBox.error("No se pudo optener la relacion de inventario producto");
