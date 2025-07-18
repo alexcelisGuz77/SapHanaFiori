@@ -1,21 +1,21 @@
 <mvc:View
+    xmlns:form="sap.ui.layout.form"
     xmlns:mvc="sap.ui.core.mvc"
     xmlns="sap.m"
-    xmlns:form="sap.ui.layout.form"
     xmlns:core="sap.ui.core"
-    controllerName="PVSapHana.controller.Inventario"
+    controllerName="PVSapHana.controller.Pedidos"
 >
-    <Page title="Gestion de Inventarios">
+    <Page title="Gestion de Pedidos">
         <content>
             <Text
-                text="Bienvenido a la página Inventario"
+                text="Bienvenido a la página Pedidos"
                 class="sapUiSmallMarginBottom"
             />
 
             <Panel
-                headerText="Registar un nuevo Imventario"
+                headerText="Registrar nuevo Pedido"
                 expandable="true"
-                expanded="true"
+                expand="true"
                 class="sapUiResponsiveMargin"
             >
                 <form:SimpleForm
@@ -26,25 +26,13 @@
                     emptySpanL="1"
                     emptySpanM="1"
                     columnsL="2"
-                    columnsM="2"
-                    title="Alta de Inventario"
+                    columnsM="1"
+                    title="Nuevo Pedido"
                 >
-                    <Label text="Nombre" />
-                    <Input value="{formModel>/newInventario/nombre}" />
-
-                    <Label text="Nota" />
-                    <Input value="{formModel>/newInventario/nota}" />
-
-                    <Label text="Direccion" />
-                    <Input value="{formModel>/newInventario/direccion}" />
-
-                    <Label text="Estado" />
-                    <Input value="{formModel>/newInventario/estado}" />
-
-                    <Label text="Negocio" />
+                    <Label text="Cliente" />
                     <ComboBox
-                        items="{/Negocio}"
-                        selectedKey="{formModel>/newInventario/negocio_ID}"
+                        items="{/Cliente}"
+                        selectedKey="{formModel>/newPedido/cliente_ID}"
                     >
                         <core:Item
                             key="{ID}"
@@ -52,25 +40,63 @@
                         />
                     </ComboBox>
 
+                    <Label text="Numero" />
+                    <Input value="{formModel>/newPedido/no}" />
+
+                    <Label text="Empleado" />
+                    <ComboBox
+                        items="{/Empleado}"
+                        selectedKey="{formModel>/newPedido/empleado_ID}"
+                    >
+                        <core:Item
+                            key="{ID}"
+                            text="{nombre}"
+                        />
+                    </ComboBox>
+
+                    <Label text="Negocio" />
+                    <ComboBox
+                        items="{/Negocio}"
+                        selectedKey="{formModel>/newPedido/negocio_ID}"
+                    >
+                        <core:Item
+                            key="{ID}"
+                            text="{nombre}"
+                        />
+                    </ComboBox>
+
+                    <Label text="Estado" />
+                    <Input value="{formModel>/newPedido/estado}" />
+
                     <Label text="Fecha de Alta" />
-                    <Input value="{formModel>/newInventario/fechaAlta}" />
+                    <DatePicker
+                        displayFormat="yyyy-MM-dd"
+                        valueFormat="yyyy-MM-dd'T'HH:mm:ss"
+                        value="{formModel>/newPedido/audit_fechaAlta}"
+                    />
 
                     <Label text="Fecha de Edicion" />
-                    <Input value="{formModel>/newInventario/fechaEdita}" />
+                    <DatePicker
+                        displayFormat="yyyy-MM-dd"
+                        valueFormat="yyyy-MM-dd'T'HH:mm:ss"
+                        value="{formModel>/newPedido/audit_fechaEdita}"
+                    />
 
                     <Label text="Usuario Alta" />
-                    <Input value="{formModel>/newInventario/usuarioAlta}" />
+                    <Input value="{formModel>/newPedido/audit_usuarioAlta}" />
 
                     <Label text="Usuario Edita" />
-                    <Input value="{formModel>/newInventario/usuarioEdita}" />
+                    <Input value="{formModel>/newPedido/audit_usuarioEdita}" />
+
                     <Label text="" />
                     <Button
                         text="Guardar"
-                        press=".onSaveInventario"
+                        press=".onSavePedido"
                         type="Emphasized"
                     />
                 </form:SimpleForm>
             </Panel>
+
             <SearchField
                 width="50%"
                 search=".onFilterInvoices"
@@ -78,8 +104,8 @@
             />
 
             <Table
-                id="inventarioTable"
-                items="{ path: '/Inventario' }"
+                id="pedidoTable"
+                items="{ path: '/Pedido' }"
                 growing="true"
                 growingScrollToLoad="true"
                 class="sapUiResponsiveMargin"
@@ -88,24 +114,20 @@
                     <Column>
                         <Text text="ID" />
                     </Column>
-
                     <Column>
-                        <Text text="Inventario" />
+                        <Text text="Cliente" />
                     </Column>
                     <Column>
-                        <Text text="direccion" />
+                        <Text text="Numero" />
+                    </Column>
+                    <Column>
+                        <Text text="empleado" />
+                    </Column>
+                    <Column>
+                        <Text text="negocio" />
                     </Column>
                     <Column>
                         <Text text="estado" />
-                    </Column>
-                    <Column>
-                        <Text text="Negocio" />
-                    </Column>
-                    <Column>
-                        <Text text="fechaAlta" />
-                    </Column>
-                    <Column>
-                        <Text text="usuarioAlta" />
                     </Column>
                     <Column>
                         <Text text="" />
@@ -115,12 +137,11 @@
                     <ColumnListItem>
                         <cells>
                             <Text text="{ID}" />
-                            <Text text="{nombre}" />
-                            <Text text="{direccion}" />
-                            <Text text="{estado}" />
+                            <Text text="{cliente/nombre}" />
+                            <Text text="{no}" />
+                            <Text text="{empleado/nombre}" />
                             <Text text="{negocio/nombre}" />
-                            <Text text="{fechaAlta}" />
-                            <Text text="{usuarioAlta}" />
+                            <Text text="{estado}" />
                             <HBox
                                 justifyContent="Center"
                                 alignItems="Center"
@@ -129,14 +150,13 @@
                                     icon="sap-icon://edit"
                                     type="Transparent"
                                     tooltip="Editar"
-                                    press=".onBuscarInventarioPorID"
+                                    press=".onBuscarPedidoPorID"
                                 />
-
                                 <Button
                                     icon="sap-icon://delete"
                                     type="Transparent"
                                     tooltip="Eliminar"
-                                    press=".onDeleteInventario"
+                                    press=".onDeleteNegocio"
                                 />
                             </HBox>
                         </cells>

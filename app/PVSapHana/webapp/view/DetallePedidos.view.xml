@@ -1,19 +1,19 @@
 <mvc:View
-    xmlns:mvc="sap.ui.core.mvc"
     xmlns:form="sap.ui.layout.form"
-    xmlns:core="sap.ui.core"
+    xmlns:mvc="sap.ui.core.mvc"
     xmlns="sap.m"
-    controllerName="PVSapHana.controller.InventarioProducto"
+    xmlns:core="sap.ui.core"
+    controllerName="PVSapHana.controller.DetallePedido"
 >
-    <Page title="Anadir producto a Inventario">
+    <Page title="Gestion de Detalle Pedidos">
         <content>
             <Text
-                text="Bienvenido a la página InventarioProducto"
+                text="Bienvenido a la página Detalles peidos"
                 class="sapUiSmallMarginBottom"
             />
 
             <Panel
-                headerText="Añade un producto a  Inventario"
+                headerText="Registrar nuevo producto al pedido"
                 expandable="true"
                 expand="true"
                 class="sapUiResponsiveMargin"
@@ -26,84 +26,81 @@
                     emptySpanL="1"
                     emptySpanM="1"
                     columnsL="2"
-                    columnsM="2"
-                    title="Añade un producto"
+                    columnsM="1"
+                    title="Nuevo Pedido"
                 >
-                    <Label text="Productos" />
+                    <Label text="Pedido" />
+                    <ComboBox
+                        items="{/Pedido}"
+                        selectedKey="{formModel>/newDetallePedido/pedido_ID}"
+                    >
+                        <core:Item
+                            key="{ID}"
+                            text="{no}"
+                        />
+                    </ComboBox>
+
+                    <Label text="Products" />
                     <ComboBox
                         items="{/Products}"
-                        selectedKey="{formModel>/newInventarioProducto/producto_ID}"
+                        selectedKey="{formModel>/newDetallePedido/producto_ID}"
                     >
                         <core:Item
                             key="{ID}"
                             text="{name}"
                         />
                     </ComboBox>
-                    <Label text="Inventario" />
-                    <ComboBox
-                        items="{/Inventario}"
-                        selectedKey="{formModel>/newInventarioProducto/inventario_ID}"
-                    >
-                        <core:Item
-                            key="{ID}"
-                            text="{nombre}"
-                        />
-                    </ComboBox>
 
-                    <Label text="cantidad" />
+                    <Label text="Cantidad" />
+                    <Input value="{formModel>/newDetallePedido/cantidad}" />
+
+                    <Label text="Precio Unitario" />
                     <Input
-                        value="{formModel>/newInventarioProducto/cantidad}"
-                    />
-                    <Label text="cantidadMin" />
-                    <Input
-                        value="{formModel>/newInventarioProducto/cantidadMin}"
-                    />
-                    <Label text="cantidadMax" />
-                    <Input
-                        value="{formModel>/newInventarioProducto/cantidadMax}"
-                    />
-                    <Label text="ubicacion" />
-                    <Input
-                        value="{formModel>/newInventarioProducto/ubicacion}"
-                    />
-                    <Label text="precioVenta" />
-                    <Input
-                        value="{formModel>/newInventarioProducto/precioVenta}"
-                    />
-                    <Label text="fechaAlta" />
-                    <DatePicker
-                        value="{formModel>/newInventarioProducto/fechaAlta}"
-                    />
-                    <Label text="fechaEdita" />
-                    <DatePicker
-                        value="{formModel>/newInventarioProducto/fechaEdita}"
-                    />
-                    <Label text="usuarioAlta" />
-                    <Input
-                        value="{formModel>/newInventarioProducto/usuarioAlta}"
-                    />
-                    <Label text="usuarioEdita" />
-                    <Input
-                        value="{formModel>/newInventarioProducto/usuarioEdita}"
+                        value="{formModel>/newDetallePedido/precioUnitario}"
                     />
 
+                    <Label text="Estado" />
+                    <Input value="{formModel>/newDetallePedido/estado}" />
+
+                    <Label text="Fecha de Alta" />
+                    <DatePicker
+                        displayFormat="yyyy-MM-dd"
+                        valueFormat="yyyy-MM-dd'T'HH:mm:ss"
+                        value="{formModel>/newDetallePedido/audit_fechaAlta}"
+                    />
+
+                    <Label text="Fecha de Edicion" />
+                    <DatePicker
+                        displayFormat="yyyy-MM-dd"
+                        valueFormat="yyyy-MM-dd'T'HH:mm:ss"
+                        value="{formModel>/newDetallePedido/audit_fechaEdita}"
+                    />
+
+                    <Label text="Usuario Alta" />
+                    <Input
+                        value="{formModel>/newDetallePedido/audit_usuarioAlta}"
+                    />
+
+                    <Label text="Usuario Edita" />
+                    <Input
+                        value="{formModel>/newDetallePedido/audit_usuarioEdita}"
+                    />
                     <Label text="" />
                     <Button
                         text="Guardar"
-                        press=".onSaveInventarioProducto"
+                        press=".onSaveDetallePedido"
                         type="Emphasized"
                     />
                 </form:SimpleForm>
             </Panel>
-               
-                <SearchField 
-               width="50%" 
-               search=".onFilterInvoices"
-               class="sapUiResponsiveMargin"/>
-
+            <SearchField
+                width="50%"
+                search=".onFilterInvoices"
+                class="sapUiResponsiveMargin"
+            />
             <Table
-                id="inventarioProductosTable"
-                items="{ path: '/InventarioProducto' }"
+                id="detallePedidoTable"
+                items="{ path: '/Detalle_pedido' }"
                 growing="true"
                 growingScrollToLoad="true"
                 class="sapUiResponsiveMargin"
@@ -113,34 +110,34 @@
                         <Text text="ID" />
                     </Column>
                     <Column>
+                        <Text text="No.Pedido" />
+                    </Column>
+                    <Column>
                         <Text text="producto" />
                     </Column>
                     <Column>
-                        <Text text="inventario" />
+                        <Text text="Cantidad" />
                     </Column>
                     <Column>
-                        <Text text="cantidad" />
+                        <Text text="Precio Unitario" />
                     </Column>
                     <Column>
-                        <Text text="cantidadMin" />
-                    </Column>
-                    <Column>
-                        <Text text="ubicacion" />
+                        <Text text="Estado" />
                     </Column>
                     <Column>
                         <Text text="" />
                     </Column>
                 </columns>
-                <items>
+                                <items>
                     <ColumnListItem>
                         <cells>
                             <Text text="{ID}" />
+                            <Text text="{pedido/no}" />
                             <Text text="{producto/name}" />
-                            <Text text="{inventario/nombre}" />
                             <Text text="{cantidad}" />
-                            <Text text="{cantidadMin}" />
-                            <Text text="{ubicacion}" />
-                           <HBox
+                            <Text text="{precioUnitario}" />
+                            <Text text="{estado}" />
+                            <HBox
                                 justifyContent="Center"
                                 alignItems="Center"
                             >
@@ -148,14 +145,13 @@
                                     icon="sap-icon://edit"
                                     type="Transparent"
                                     tooltip="Editar"
-                                    press=".onBuscarInventarioProductoPorId"
+                                    press=".onBuscarDetallePedidoPorID"
                                 />
-
                                 <Button
                                     icon="sap-icon://delete"
                                     type="Transparent"
                                     tooltip="Eliminar"
-                                    press=".onDeleteNegocio"
+                                    press=".onDeleteDetallePedido"
                                 />
                             </HBox>
                         </cells>

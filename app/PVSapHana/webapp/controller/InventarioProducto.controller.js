@@ -1,8 +1,10 @@
 sap.ui.define([
     "./BaseController",
     "sap/m/MessageBox",
-    "sap/m/MessageToast"
-], function (BaseController, MessageBox, MessageToast) {
+    "sap/m/MessageToast",
+    "sap/ui/model/Filter",
+    "sap/ui/model/FilterOperator"
+], function (BaseController, MessageBox, MessageToast, Filter, FilterOperator) {
     "use strict";
 
     return BaseController.extend("PVSapHana.controller.InventarioProducto", {
@@ -17,10 +19,10 @@ sap.ui.define([
                     cantidadMax: "",
                     ubicacion: "",
                     precioVenta: "",
-                    fechaAlta:"",
-                    fechaEdita:"",  
-                    usuarioAlta:"", 
-                    usuarioEdita:""
+                    fechaAlta: new Date(),
+                    fechaEdita: new Date(),
+                    usuarioAlta: "",
+                    usuarioEdita: ""
                 }
             });
             this.getView().setModel(oFormModel, "formModel");
@@ -33,27 +35,21 @@ sap.ui.define([
 
             const oTable = oView.byId("inventarioProductosTable");
             const oBinding = oTable.getBinding("items");
-            
-            if(this._oEditingContext){
-                this._oEditingContext.setProperty("producto_ID",oRawData.producto_ID );
-                this._oEditingContext.setProperty("inventario_ID",oRawData.inventario_ID );
-                this._oEditingContext.setProperty("cantidad",oRawData.cantidad );
-                this._oEditingContext.setProperty("cantidadMin",oRawData.cantidadMin );
-                this._oEditingContext.setProperty("cantidadMax",oRawData.cantidadMax );
-                this._oEditingContext.setProperty("ubicacion",oRawData.ubicacion );
-                this._oEditingContext.setProperty("precioVenta",oRawData.precioVenta );
-                this._oEditingContext.setProperty("fechaAlta",oRawData.fechaAlta );
-                this._oEditingContext.setProperty("fechaEdita",oRawData.fechaEdita );
-                this._oEditingContext.setProperty("usuarioAlta",oRawData.usuarioAlta );
-                this._oEditingContext.setProperty("usuarioEdita",oRawData.usuarioEdita );
-            
-                sap.m.MessageToast.show("Realacion Inventario Producto Actualizado correctamente");
-                this._oEditingContext = null;
-            }else{
-                oBinding.create(oRawData);
-                sap.m.MessageToast.show("Añadiendo Producto al inventario");
-            }
+
+            if (this._oEditingContext) {
+                const oContext = this._oEditingContext;
+                Object.entries(oRawData).forEach(([key, value]) => {
+                    oContext.setProperty(key, value);
+                });
         
+                sap.m.MessageToast.show("Inventario Producto actualizado correctamente");
+                this._oEditingContext = null;
+            } else {
+                oBinding.create(oRawData);
+                sap.m.MessageToast.show("Inventario Porducto en proceso de creación");
+            }
+
+
             // Resetear el formulario
             oFormModel.setProperty("/newInventarioProducto", {
                 products_id: null,
@@ -69,36 +65,70 @@ sap.ui.define([
                 usuarioEdita: ""
             });
         },
-        
 
-        onBuscarInventarioProductoPorId: async function(oEvent){
+
+        onDeleteNegocio: function (oEvent) {
+            const oButton = oEvent.getSource();
+            const oContext = oButton.getBindingContext();
+
+            sap.m.MessageBox.confirm("¿Estás seguro de que deseas eliminar esta relacion Producto Inventario?", {
+                onClose: function (sAction) {
+                    if (sAction === sap.m.MessageBox.Action.OK) {
+                        oContext.delete()
+                            .then(() => {
+                                sap.m.MessageToast.show("Relacion Producto Inventario eliminado correctamente");
+                            })
+                            .catch((oError) => {
+                                console.error(oError);
+                                sap.m.MessageBox.error("Error al eliminar el Producto Inventario");
+                            });
+                    }
+                }
+
+            });
+        },
+
+
+        onBuscarInventarioProductoPorId: async function (oEvent) {
             const oContext = oEvent.getSource().getParent().getParent().getBindingContext();
             const oModel = this.getView().getModel();
-            
-            if(!oContext){
+
+            if (!oContext) {
                 sap.m.MessageToast.show("No se puedo optener el contexto del Inventario");
                 return;
             }
 
             const sPath = oContext.getPath();
 
-            try{
+            try {
                 const oBoundContext = oModel.bindContext(sPath);
                 const oData = await oBoundContext.requestObject();
 
-                if(!oData){
-                    console.log("Que onda");
+                if (!oData) {
                     throw new Error("No se encontro la relacion Inventario Producto");
                 }
 
                 this.getView().getModel("formModel").setProperty("/newInventarioProducto", oData);
-                sap.m.MessageToast.show("Iventario Producto cargado para edicion");
+                sap.m.MessageToast.show("Inventario Producto cargado para edicion");
                 this._oEditingContext = oContext;
-            }catch(err){
+            } catch (err) {
                 console.error("Error al optener la relacion de inventario Porducto", err);
                 sap.m.MessageBox.error("No se pudo optener la relacion de inventario producto");
             }
 
+        },
+
+        onFilterInvoices: function (oEvent) {
+            const aFilters = [];
+            const sQuery = oEvent.getParameter("query");
+        
+            if (sQuery) {
+                aFilters.push(new Filter("nombre", FilterOperator.Contains, sQuery));
+            }
+        
+            const oTable = this.byId("inventarioProductosTable");
+            const oBinding = oTable.getBinding("items");
+            oBinding.filter(aFilters);
         }
 
     });

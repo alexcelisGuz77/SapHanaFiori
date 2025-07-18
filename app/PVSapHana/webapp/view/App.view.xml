@@ -72,6 +72,17 @@
                         key="clientes"
                     />
                     <tnt:NavigationListItem
+                        text="Pedidos"
+                        icon="sap-icon://order-status"
+                        key="pedidos"
+                    />
+
+                    <tnt:NavigationListItem
+                        text="Detalle Pedido"
+                        icon="sap-icon://add-coursebook"
+                        key="detallePedidos"
+                    />
+                    <tnt:NavigationListItem
                         text="Configuración"
                         icon="sap-icon://action-settings"
                         key="configuracion"

@@ -1,5 +1,14 @@
 namespace my.products;
 
+
+type Audit {
+      fechaAlta         : DateTime default $now;
+      fechaEdita        : DateTime;
+      usuarioAlta       : String(50) default 'userDefauld';
+      usuarioEdita      : String(50) default 'userDefauld';
+}
+
+
 entity Products {
   key ID       : UUID;
       name     : String(100);
@@ -102,4 +111,24 @@ entity Cliente {
       fechaEdita        : Timestamp;
       usuarioAlta       : String(50);
       usuarioEdita      : String(50);
+}
+
+entity Pedido {
+  Key ID       : UUID;
+      cliente  : Association to Cliente;
+      no       : Integer;
+      empleado : Association to Empleado;
+      negocio  : Association to Negocio;
+      estado   : Integer;
+      audit    : Audit;
+}
+
+entity detalle_pedido {
+  Key ID             : UUID;
+      pedido         : Association to Pedido;
+      producto       : Association to Products;
+      cantidad       : Integer;
+      precioUnitario : Decimal(10, 2); 
+      estado         : Integer;
+      audit          : Audit;
 }

@@ -134,6 +134,16 @@
 					"pattern": "clientes",
 					"name": "clientes",
 					"target": "clientes"
+				},
+				{
+					"pattern": "pedidos",
+					"name": "pedidos",
+					"target": "pedidos"
+				},
+				{
+					"pattern": "detallePedidos",
+					"name": "detallePedidos",
+					"target": "detallePedidos"
 				}
 			],
 			"targets": {
@@ -180,6 +190,16 @@
 					"viewName": "Clientes",
 					"viewId": "clientes",
 					"viewLevel": 6
+				},
+				"pedidos": {
+					"viewName": "Pedidos",
+					"viewId": "Pedidos",
+					"viewLevel": 7
+				},
+				"detallePedidos": {
+					"viewName": "DetallePedidos",
+					"viewId": "DetallePedidos",
+					"viewLevel": 7
 				}
 			}
 		}

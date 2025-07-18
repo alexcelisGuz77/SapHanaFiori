@@ -61,6 +61,14 @@ sap.ui.define(["./BaseController", "sap/m/MessageToast"], function (BaseControll
 					MessageToast.show("Navegando a Configuración");
 					break;
 
+				case "pedidos":
+					MessageToast.show("Navegando a Pedidos");
+					break;
+
+					case "detallePedidos":
+						MessageToast.show("Navegando a Detallar pedido");
+						break;
+
 				default:
 					MessageToast.show("Sección desconocida.");
 			}

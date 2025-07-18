@@ -1,8 +1,10 @@
 sap.ui.define([
     "./BaseController",
     "sap/m/MessageBox",
-    "sap/m/MessageToast"
-], function (BaseController, MessageBox, MessageToast) {
+    "sap/m/MessageToast",
+    "sap/ui/model/Filter",
+    "sap/ui/model/FilterOperator"
+], function (BaseController, MessageBox, MessageToast, Filter, FilterOperator) {
     "use strict";
 
     return BaseController.extend("PVSapHana.controller.Negocios", {
@@ -49,39 +51,18 @@ sap.ui.define([
             const oBinding = oTable.getBinding("items");
 
             if (this._oEditingContext) {
-                this._oEditingContext.setProperty("nombre", oNewNegocio.nombre);
-                this._oEditingContext.setProperty("direccion", oNewNegocio.direccion);
-                this._oEditingContext.setProperty("celular", oNewNegocio.celular);
-                this._oEditingContext.setProperty("tipoNegocio", oNewNegocio.tipoNegocio);
-                this._oEditingContext.setProperty("estado", oNewNegocio.estado);
-                this._oEditingContext.setProperty("fechaAlta", oNewNegocio.fechaAlta);
-                this._oEditingContext.setProperty("fechaEdita", oNewNegocio.fechaEdita);
-                this._oEditingContext.setProperty("usuarioAlta", oNewNegocio.usuarioAlta);
-                this._oEditingContext.setProperty("usuarioEdita", oNewNegocio.usuarioEdita);
-                this._oEditingContext.setProperty("razonSocial", oNewNegocio.razonSocial);
-                this._oEditingContext.setProperty("rfc", oNewNegocio.rfc);
-                this._oEditingContext.setProperty("correo", oNewNegocio.correo);
-                this._oEditingContext.setProperty("ciudad", oNewNegocio.ciudad);
-                this._oEditingContext.setProperty("estadoMX", oNewNegocio.estadoMX);
-                this._oEditingContext.setProperty("codigoPostal", oNewNegocio.codigoPostal);
-                this._oEditingContext.setProperty("paginaWeb", oNewNegocio.paginaWeb);
-                this._oEditingContext.setProperty("facebook", oNewNegocio.facebook);
-                this._oEditingContext.setProperty("instagram", oNewNegocio.instagram);
-                this._oEditingContext.setProperty("regimenFiscal", oNewNegocio.regimenFiscal);
-                this._oEditingContext.setProperty("usoCFDI", oNewNegocio.usoCFDI);
-                this._oEditingContext.setProperty("serieFactura", oNewNegocio.serieFactura);
-                this._oEditingContext.setProperty("folioActual", oNewNegocio.folioActual);
-                this._oEditingContext.setProperty("facturaElectronica", oNewNegocio.facturaElectronica);
-                this._oEditingContext.setProperty("moneda", oNewNegocio.moneda);
-                this._oEditingContext.setProperty("zonaHoraria", oNewNegocio.zonaHoraria);
-
+                const oContext = this._oEditingContext;
+                Object.entries(oNewNegocio).forEach(([key, value]) => {
+                    oContext.setProperty(key, value);
+                });
+        
                 sap.m.MessageToast.show("Negocio actualizado correctamente");
                 this._oEditingContext = null;
             } else {
                 oBinding.create(oNewNegocio);
-                sap.m.MessageToast.show("Negocio en Proceso de creacion");
-
+                sap.m.MessageToast.show("Negocio en proceso de creación");
             }
+        
 
 
             oFormModel.setProperty("/newNegocio", {
@@ -162,7 +143,21 @@ sap.ui.define([
                 console.error("Error al buscar negocio por ID:", err);
                 sap.m.MessageBox.error("No se pudo obtener el negocio");
             }
+        },
+
+        onFilterInvoices: function (oEvent) {
+            const aFilters = [];
+            const sQuery = oEvent.getParameter("query");
+        
+            if (sQuery) {
+                aFilters.push(new Filter("nombre", FilterOperator.Contains, sQuery));
+            }
+        
+            const oTable = this.byId("negociosTable");
+            const oBinding = oTable.getBinding("items");
+            oBinding.filter(aFilters);
         }
+        
 
 
     });

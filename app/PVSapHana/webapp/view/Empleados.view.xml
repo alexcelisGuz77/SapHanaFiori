@@ -98,7 +98,11 @@
                         />
                     </form:SimpleForm>
                 </Panel>
-
+                <SearchField
+                    width="50%"
+                    search=".onFilterInvoices"
+                    class="sapUiResponsiveMargin"
+                />
                 <Table
                     id="empleadosTable"
                     items="{ path: '/Empleado' }"
@@ -109,6 +113,9 @@
                     <columns>
                         <Column>
                             <Text text="ID" />
+                        </Column>
+                        <Column>
+                            <Text text="Negocio" />
                         </Column>
                         <Column>
                             <Text text="Nombre" />
@@ -130,16 +137,28 @@
                         <ColumnListItem>
                             <cells>
                                 <Text text="{ID}" />
+                                <Text text="{negocio/nombre}" />
                                 <Text text="{nombre}" />
                                 <Text text="{apellidoPaterno}" />
                                 <Text text="{curp}" />
                                 <Text text="{rfc}" />
-                                <Button
-                                    icon="sap-icon://delete"
-                                    type="Transparent"
-                                    tooltip="Eliminar"
-                                    press=".onDeleteEmpleado"
-                                />
+                                <HBox
+                                    justifyContent="Center"
+                                    alignItems="Center"
+                                >
+                                    <Button
+                                        icon="sap-icon://edit"
+                                        type="Transparent"
+                                        tooltip="Editar"
+                                        press=".onBuscarEmpleadoById"
+                                    />
+                                    <Button
+                                        icon="sap-icon://delete"
+                                        type="Transparent"
+                                        tooltip="Eliminar"
+                                        press=".onDeleteEmpleado"
+                                    />
+                                </HBox>
                             </cells>
                         </ColumnListItem>
                     </items>

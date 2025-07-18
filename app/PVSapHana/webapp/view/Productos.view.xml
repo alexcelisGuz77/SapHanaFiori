@@ -53,10 +53,13 @@
                             press=".onSaveProduct"
                             type="Emphasized"
                         />
-             
                     </form:SimpleForm>
                 </Panel>
-
+                <SearchField
+                    width="50%"
+                    search=".onFilterInvoices"
+                    class="sapUiResponsiveMargin"
+                />
                 <Table
                     id="productsTable"
                     items="{ path: '/Products' }"
@@ -100,7 +103,7 @@
                                         icon="sap-icon://edit"
                                         type="Transparent"
                                         tooltip="Editar"
-                                        press=".onEditProduct"
+                                        press=".onBuscarNegocioPorID"
                                     />
                                     <Button
                                         icon="sap-icon://delete"

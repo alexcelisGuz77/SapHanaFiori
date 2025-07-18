@@ -110,7 +110,11 @@
                     />
                 </form:SimpleForm>
             </Panel>
-
+                <SearchField 
+               width="50%" 
+               search=".onFilterInvoices"
+               class="sapUiResponsiveMargin"/>
+               
             <Table
                 id="negociosTable"
                 items="{ path: '/Negocio' }"

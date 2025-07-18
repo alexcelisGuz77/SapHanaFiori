@@ -30,7 +30,10 @@
                         title="Nuevo Cliente"
                     >
                         <Label text="Nombre" />
-                        <Input  required="true" value="{formModel>/newCliente/nombre}" />
+                        <Input
+                            required="true"
+                            value="{formModel>/newCliente/nombre}"
+                        />
 
                         <Label text="Telefono" />
                         <Input value="{formModel>/newCliente/telefono}" />
@@ -45,7 +48,7 @@
                         <Label text="Negocio" />
                         <ComboBox
                             items="{/Negocio}"
-                            selectedKey="{formModel>/newEmpleados/negocio_ID}"
+                            selectedKey="{formModel>/newCliente/negocio_ID}"
                         >
                             <core:Item
                                 key="{ID}"
@@ -75,10 +78,12 @@
                         />
                     </form:SimpleForm>
                 </Panel>
-                <SearchField 
-               width="50%" 
-               search=".onFilterInvoices"/>
-               
+                <SearchField
+                    width="50%"
+                    search=".onFilterInvoices"
+                    class="sapUiResponsiveMargin"
+                />
+
                 <Table
                     id="clienteTable"
                     items="{ path: '/Cliente' }"
@@ -86,11 +91,12 @@
                     growingScrollToLoad="true"
                     class="sapUiResponsiveMargin"
                 >
-
-
                     <columns>
                         <Column>
                             <Text text="ID" />
+                        </Column>
+                        <Column>
+                            <Text text="Negocio" />
                         </Column>
                         <Column>
                             <Text text="nombre" />
@@ -108,9 +114,6 @@
                             <Text text="fechaAlta" />
                         </Column>
                         <Column>
-                            <Text text="usuarioAlta" />
-                        </Column>
-                        <Column>
                             <Text text="" />
                         </Column>
                     </columns>
@@ -118,32 +121,32 @@
                         <ColumnListItem>
                             <cells>
                                 <Text text="{ID}" />
+                                <Text text="{negocio/nombre}" />
                                 <Text text="{nombre}" />
                                 <Text text="{telefono}" />
                                 <Text text="{correoElectronico}" />
                                 <Text text="{estado}" />
                                 <Text text="{fechaAlta}" />
-                                <Text text="{usuarioAlta}" />
-                                                        <HBox
-                                justifyContent="Center"
-                                alignItems="Center"
-                            >
-                                <Button
-                                    icon="sap-icon://edit"
-                                    type="Transparent"
-                                    tooltip="Editar"
-                                    press=".onBuscarClientePorID"
-                                />
 
-                                <Button
-                                    icon="sap-icon://delete"
-                                    type="Transparent"
-                                    tooltip="Eliminar"
-                                    press=".onDeleteCliente"
-                                />
-                            </HBox>
+                                <HBox
+                                    justifyContent="Center"
+                                    alignItems="Center"
+                                >
+                                    <Button
+                                        icon="sap-icon://edit"
+                                        type="Transparent"
+                                        tooltip="Editar"
+                                        press=".onBuscarClientePorID"
+                                    />
+
+                                    <Button
+                                        icon="sap-icon://delete"
+                                        type="Transparent"
+                                        tooltip="Eliminar"
+                                        press=".onDeleteCliente"
+                                    />
+                                </HBox>
                             </cells>
-
                         </ColumnListItem>
                     </items>
                 </Table>
