@@ -16,7 +16,11 @@ sap.ui.define([
           name: "",
           category: "",
           price: 0,
-          stock: 0
+          stock: 0,
+          audit_fechaAlta: "",
+          audit_fechaEdita: "",
+          audit_usuarioAlta: "",
+          audit_usuarioEdita: ""
         }
       });
       this.getView().setModel(oFormModel, "formModel");
@@ -50,7 +54,11 @@ sap.ui.define([
         name: "",
         category: "",
         price: 0,
-        stock: 0
+        stock: 0,
+        audit_fechaAlta: "",
+        audit_fechaEdita: "",
+        audit_usuarioAlta: "",
+        audit_usuarioEdita: ""
       });
     },
 

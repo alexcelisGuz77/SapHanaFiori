@@ -58,17 +58,29 @@
                         <Label text="Estado" />
                         <Input value="{formModel>/newCliente/estado}" />
 
-                        <Label text="Fecha Alta" />
-                        <Input value="{formModel>/newCliente/fechaAlta}" />
+                        <Label text="Fecha de Alta" />
+                        <DatePicker
+                            displayFormat="yyyy-MM-dd"
+                            valueFormat="yyyy-MM-dd'T'HH:mm:ss"
+                            value="{formModel>/newCliente/audit_fechaAlta}"
+                        />
 
-                        <Label text="Fecha Edita" />
-                        <Input value="{formModel>/newCliente/fechaEdita}" />
+                        <Label text="Fecha de Edicion" />
+                        <DatePicker
+                            displayFormat="yyyy-MM-dd"
+                            valueFormat="yyyy-MM-dd'T'HH:mm:ss"
+                            value="{formModel>/newCliente/audit_fechaEdita}"
+                        />
 
                         <Label text="Usuario Alta" />
-                        <Input value="{formModel>/newCliente/usuarioAlta}" />
+                        <Input
+                            value="{formModel>/newCliente/audit_usuarioAlta}"
+                        />
 
                         <Label text="Usuario Edita" />
-                        <Input value="{formModel>/newCliente/usuarioEdita}" />
+                        <Input
+                            value="{formModel>/newCliente/audit_usuarioEdita}"
+                        />
 
                         <Label text="" />
                         <Button
@@ -126,7 +138,7 @@
                                 <Text text="{telefono}" />
                                 <Text text="{correoElectronico}" />
                                 <Text text="{estado}" />
-                                <Text text="{fechaAlta}" />
+                                <Text text="{audit_fechaAlta}" />
 
                                 <HBox
                                     justifyContent="Center"

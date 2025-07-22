@@ -90,6 +90,30 @@
                             />
                         </ComboBox>
 
+                        <Label text="Fecha de Alta" />
+                        <DatePicker
+                            displayFormat="yyyy-MM-dd"
+                            valueFormat="yyyy-MM-dd'T'HH:mm:ss"
+                            value="{formModel>/newEmpleados/audit_fechaAlta}"
+                        />
+
+                        <Label text="Fecha de Edicion" />
+                        <DatePicker
+                            displayFormat="yyyy-MM-dd"
+                            valueFormat="yyyy-MM-dd'T'HH:mm:ss"
+                            value="{formModel>/newEmpleados/audit_fechaEdita}"
+                        />
+
+                        <Label text="Usuario Alta" />
+                        <Input
+                            value="{formModel>/newEmpleados/audit_usuarioAlta}"
+                        />
+
+                        <Label text="Usuario Edita" />
+                        <Input
+                            value="{formModel>/newEmpleados/audit_usuarioEdita}"
+                        />
+
                         <Label text="" />
                         <Button
                             text="Guardar"

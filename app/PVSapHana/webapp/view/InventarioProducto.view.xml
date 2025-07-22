@@ -70,21 +70,28 @@
                     <Input
                         value="{formModel>/newInventarioProducto/precioVenta}"
                     />
-                    <Label text="fechaAlta" />
+                    <Label text="Fecha de Alta" />
                     <DatePicker
-                        value="{formModel>/newInventarioProducto/fechaAlta}"
+                        displayFormat="yyyy-MM-dd"
+                        valueFormat="yyyy-MM-dd'T'HH:mm:ss"
+                        value="{formModel>/newInventarioProducto/audit_fechaAlta}"
                     />
-                    <Label text="fechaEdita" />
+
+                    <Label text="Fecha de Edicion" />
                     <DatePicker
-                        value="{formModel>/newInventarioProducto/fechaEdita}"
+                        displayFormat="yyyy-MM-dd"
+                        valueFormat="yyyy-MM-dd'T'HH:mm:ss"
+                        value="{formModel>/newInventarioProducto/audit_fechaEdita}"
                     />
-                    <Label text="usuarioAlta" />
+
+                    <Label text="Usuario Alta" />
                     <Input
-                        value="{formModel>/newInventarioProducto/usuarioAlta}"
+                        value="{formModel>/newInventarioProducto/audit_usuarioAlta}"
                     />
-                    <Label text="usuarioEdita" />
+
+                    <Label text="Usuario Edita" />
                     <Input
-                        value="{formModel>/newInventarioProducto/usuarioEdita}"
+                        value="{formModel>/newInventarioProducto/audit_usuarioEdita}"
                     />
 
                     <Label text="" />
@@ -95,11 +102,12 @@
                     />
                 </form:SimpleForm>
             </Panel>
-               
-                <SearchField 
-               width="50%" 
-               search=".onFilterInvoices"
-               class="sapUiResponsiveMargin"/>
+
+            <SearchField
+                width="50%"
+                search=".onFilterInvoices"
+                class="sapUiResponsiveMargin"
+            />
 
             <Table
                 id="inventarioProductosTable"
@@ -140,7 +148,7 @@
                             <Text text="{cantidad}" />
                             <Text text="{cantidadMin}" />
                             <Text text="{ubicacion}" />
-                           <HBox
+                            <HBox
                                 justifyContent="Center"
                                 alignItems="Center"
                             >

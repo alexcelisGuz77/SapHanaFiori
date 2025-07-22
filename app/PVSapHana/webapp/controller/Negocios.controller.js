@@ -17,10 +17,6 @@ sap.ui.define([
                     celular: "",
                     tipoNegocio: null,
                     estado: null,
-                    fechaAlta: new Date(),
-                    fechaEdita: new Date(),
-                    usuarioAlta: "",
-                    usuarioEdita: "",
                     razonSocial: "",
                     rfc: "",
                     correo: "",
@@ -36,7 +32,11 @@ sap.ui.define([
                     folioActual: 1,
                     facturaElectronica: null,
                     moneda: "MXN",
-                    zonaHoraria: "America/Mexico_City"
+                    zonaHoraria: "America/Mexico_City",
+                    audit_fechaAlta: "",
+                    audit_fechaEdita: "",
+                    audit_usuarioAlta: "",
+                    audit_usuarioEdita: ""
                 }
             });
             this.getView().setModel(oFormModel, "formModel");
@@ -72,10 +72,6 @@ sap.ui.define([
                 celular: "",
                 tipoNegocio: null,
                 estado: null,
-                fechaAlta: new Date(),
-                fechaEdita: new Date(),
-                usuarioAlta: "",
-                usuarioEdita: "",
                 razonSocial: "",
                 rfc: "",
                 correo: "",
@@ -91,7 +87,11 @@ sap.ui.define([
                 folioActual: 1,
                 facturaElectronica: null,
                 moneda: "MXN",
-                zonaHoraria: "America/Mexico_City"
+                zonaHoraria: "America/Mexico_City",
+                audit_fechaAlta: "",
+                audit_fechaEdita: "",
+                audit_usuarioAlta: "",
+                audit_usuarioEdita: ""
             });
         },
 

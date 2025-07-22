@@ -24,9 +24,10 @@ sap.ui.define([
                     celular: "",
                     negocio_ID: null,
                     estado: 1,
-                    fechaAlta: new Date(),
-                    fechaEdita: new Date(),
-                    usuarioEdita: ""
+                    audit_fechaAlta: "",
+                    audit_fechaEdita: "",
+                    audit_usuarioAlta: "",
+                    audit_usuarioEdita: ""
                 }
             });
             this.getView().setModel(oFormModel, "formModel");
@@ -69,10 +70,10 @@ sap.ui.define([
                 celular: "",
                 negocio_ID: null,
                 estado: 1,
-                fechaAlta: new Date(),
-                fechaEdita: new Date(),
-                usuarioAlta: "",
-                usuarioEdita: ""
+                audit_fechaAlta: "",
+                audit_fechaEdita: "",
+                audit_usuarioAlta: "",
+                audit_usuarioEdita: ""
             })
         },
 

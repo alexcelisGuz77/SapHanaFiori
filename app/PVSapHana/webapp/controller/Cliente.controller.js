@@ -17,10 +17,10 @@ sap.ui.define([
                     correoElectronico: "",
                     negocio_ID: null,
                     estado: null,
-                    fechaAlta: new Date(),
-                    fechaEdita: new Date(),
-                    usuarioAlta: "",
-                    usuarioEdita: ""
+                    audit_fechaAlta: "",
+                    audit_fechaEdita: "",
+                    audit_usuarioAlta: "",
+                    audit_usuarioEdita: ""
                 }
             });
 
@@ -57,10 +57,10 @@ sap.ui.define([
                 correoElectronico: "",
                 negocio_ID: null,
                 estado: null,
-                fechaAlta: new Date(),
-                fechaEdita: new Date(),
-                usuarioAlta: "",
-                usuarioEdita: ""
+                audit_fechaAlta: "",
+                audit_fechaEdita: "",
+                audit_usuarioAlta: "",
+                audit_usuarioEdita: ""
             });
         },
 

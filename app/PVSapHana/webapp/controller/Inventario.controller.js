@@ -16,10 +16,10 @@ sap.ui.define([
                     nota: "",
                     direccion: "",
                     estado: 0,
-                    fechaAlta: new Date(),
-                    fechaEdita: new Date(),
-                    usuarioAlta: "",
-                    usuarioEdita: ""
+                    audit_fechaAlta: "",
+                    audit_fechaEdita: "",
+                    audit_usuarioAlta: "",
+                    audit_usuarioEdita: ""
                 }
             });
             this.getView().setModel(oFormModel, "formModel");
@@ -52,10 +52,10 @@ sap.ui.define([
                 nota: "",
                 direccion: "",
                 estado: 0,
-                fechaAlta: new Date(),
-                fechaEdita: new Date(),
-                usuarioAlta: "",
-                usuarioEdita: ""
+                audit_fechaAlta: "",
+                audit_fechaEdita: "",
+                audit_usuarioAlta: "",
+                audit_usuarioEdita: ""
             });
         },
 

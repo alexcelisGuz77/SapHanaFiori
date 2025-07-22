@@ -43,18 +43,6 @@
                     <Label text="Estado" />
                     <Input value="{formModel>/newNegocio/estado}" />
 
-                    <Label text="Fecha de Alta" />
-                    <Input value="{formModel>/newNegocio/fechaAlta}" />
-
-                    <Label text="Fecha de Edicion" />
-                    <Input value="{formModel>/newNegocio/fechaEdita}" />
-
-                    <Label text="Usuario Alta" />
-                    <Input value="{formModel>/newNegocio/usuarioAlta}" />
-
-                    <Label text="Usuario Edita" />
-                    <Input value="{formModel>/newNegocio/usuarioEdita}" />
-
                     <Label text="Razon Social" />
                     <Input value="{formModel>/newNegocio/razonSocial}" />
 
@@ -67,7 +55,7 @@
                     <Label text="Ciudad" />
                     <Input value="{formModel>/newNegocio/ciudad}" />
 
-                    <Label text="Estado" />
+                    <Label text="Estado MX" />
                     <Input value="{formModel>/newNegocio/estadoMX}" />
 
                     <Label text="Codigo Postal" />
@@ -102,6 +90,27 @@
 
                     <Label text="Zona Horaria" />
                     <Input value="{formModel>/newNegocio/zonaHoraria}" />
+
+                    <Label text="Fecha de Alta" />
+                    <DatePicker
+                        displayFormat="yyyy-MM-dd"
+                        valueFormat="yyyy-MM-dd'T'HH:mm:ss"
+                        value="{formModel>/newNegocio/audit_fechaAlta}"
+                    />
+
+                    <Label text="Fecha de Edicion" />
+                    <DatePicker
+                        displayFormat="yyyy-MM-dd"
+                        valueFormat="yyyy-MM-dd'T'HH:mm:ss"
+                        value="{formModel>/newNegocio/audit_fechaEdita}"
+                    />
+
+                    <Label text="Usuario Alta" />
+                    <Input value="{formModel>/newNegocio/audit_usuarioAlta}" />
+
+                    <Label text="Usuario Edita" />
+                    <Input value="{formModel>/newNegocio/audit_usuarioEdita}" />
+
                     <Label text="" />
                     <Button
                         text="Guardar"
@@ -110,11 +119,12 @@
                     />
                 </form:SimpleForm>
             </Panel>
-                <SearchField 
-               width="50%" 
-               search=".onFilterInvoices"
-               class="sapUiResponsiveMargin"/>
-               
+            <SearchField
+                width="50%"
+                search=".onFilterInvoices"
+                class="sapUiResponsiveMargin"
+            />
+
             <Table
                 id="negociosTable"
                 items="{ path: '/Negocio' }"
